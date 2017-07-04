@@ -1,0 +1,23 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "global-require": 0,
+    "comma-dangle": 0,
+    "arrow-body-style": 0,
+    "space-before-function-paren": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/jsx-filename-extension": 1,
+    "react/forbid-prop-types": 1,
+    "jsx-a11y/anchor-has-content": 0
+  }
+}
