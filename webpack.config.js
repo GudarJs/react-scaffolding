@@ -2,13 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
-  devTool: 'cheap-module-eval-source-map',
-  noInfo: false,
   target: 'web',
-
+  resolve: { extensions: [".js", ".jsx"] },
   entry: [
     'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
@@ -22,10 +17,15 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, include: path.join(__dirname, 'src'), loaders: ['babel'] },
-      { test: /\.css$/, loaders: ['style', 'css?sourceMap'] },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loaders: ['file'] },
-      { test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000' },
+      { test: /\.jsx?$/, include: path.join(__dirname, 'src'), loaders: ['babel-loader'] },
+      {
+        test: /\.css$/, use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" }
+        ]
+      },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loaders: ['file-loader'] },
+      { test: /\.(woff|woff2)$/, loader: 'file-loader?name=fonts/[name].[ext]' },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
     ]
@@ -33,7 +33,7 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ],
 
   devServer: {

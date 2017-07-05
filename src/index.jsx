@@ -10,7 +10,7 @@ import configureStore from './store/configureStore';
 import routes from './routes';
 
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+const history = require('react-router-redux').syncHistoryWithStore(browserHistory, store);
 
 render(
   <Provider store={store}>

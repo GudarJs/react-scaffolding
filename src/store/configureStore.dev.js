@@ -7,7 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers';
 
 const enhancer = composeWithDevTools(
-  applyMiddleware(thunk, logger(), reduxImmutableStateInvariant())
+  applyMiddleware(thunk, logger, reduxImmutableStateInvariant())
 );
 
 export default function configureStore (initialState) {
